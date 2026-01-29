@@ -1,0 +1,201 @@
+/* Animated Week-Month Calendar Styles */
+.calendar-container {
+  font-family: inherit;
+}
+
+.calendar-day {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  border: none;
+  font-family: inherit;
+}
+
+.calendar-day:hover:not(.selected):not(.disabled) {
+  background-color: #f3f4f6;
+  transform: scale(1.02);
+}
+
+.calendar-day.selected {
+  background-color: #2563eb;
+  color: white;
+  font-weight: 600;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.calendar-day.today:not(.selected) {
+  background-color: #dbeafe;
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.calendar-day.has-booking:not(.selected) {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 500;
+}
+
+.calendar-day.disabled {
+  color: #d1d5db;
+  cursor: not-allowed;
+}
+
+.calendar-day.outside-month {
+  color: #9ca3af;
+}
+
+/* Week view specific styles */
+.calendar-day.week-view {
+  min-height: 4rem;
+  min-width: 5rem;
+  padding: 1rem;
+}
+
+.calendar-day.week-view .day-number {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.calendar-day.week-view .day-name {
+  font-size: 0.75rem;
+  opacity: 0.75;
+  margin-top: 0.25rem;
+}
+
+/* Month view specific styles */
+.calendar-day.month-view {
+  height: 2.5rem;
+  aspect-ratio: 1;
+  padding: 0.5rem;
+}
+
+.calendar-day.month-view .day-number {
+  font-size: 0.875rem;
+}
+
+/* Booking indicator dot */
+.calendar-day .booking-dot {
+  position: absolute;
+  bottom: 0.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  background-color: #2563eb;
+}
+
+.calendar-day.selected .booking-dot {
+  background-color: white;
+}
+
+/* Animation classes */
+.calendar-view-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.calendar-slide-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.calendar-slide-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.calendar-slide-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.calendar-slide-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+/* Navigation button hover effects */
+.nav-button {
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-button:hover {
+  background-color: #f3f4f6;
+  transform: scale(1.05);
+}
+
+/* View toggle button animations */
+.view-toggle {
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.view-toggle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.view-toggle:hover::before {
+  left: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .calendar-day.week-view {
+    min-width: 3rem;
+    min-height: 3rem;
+    padding: 0.5rem;
+  }
+  
+  .calendar-day.week-view .day-number {
+    font-size: 1rem;
+  }
+  
+  .calendar-day.month-view {
+    height: 2rem;
+  }
+}
+
+/* Smooth scaling for interactive elements */
+.calendar-interactive {
+  transform: scale(1);
+  transition: transform 0.15s ease-out;
+}
+
+.calendar-interactive:active {
+  transform: scale(0.98);
+}
+
+/* Today button pulse animation */
+.today-button {
+  animation: subtle-pulse 2s infinite;
+}
+
+@keyframes subtle-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}

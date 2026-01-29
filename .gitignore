@@ -5,6 +5,7 @@
 .next
 dist
 
+
 # testing
 /coverage
 
